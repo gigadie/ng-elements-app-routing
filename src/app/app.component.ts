@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
   @Input('state') 
   set state(state: string) {
-    console.log('app1 received state', state);
+    console.log('app2 received state', state);
   }
 
   @Output() message = new EventEmitter<any>();
@@ -21,8 +21,9 @@ export class AppComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-  	this.router.navigateByUrl('/app2/one');
   	this.message.emit('navigation to /app2/one');
+  	this.router.navigateByUrl('/app2/two');
+  	setTimeout(_ => this.message.emit('something happened in app2'), 5000);
   }
 
 }
